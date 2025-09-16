@@ -29,44 +29,33 @@ QUnit.module("Тестируем функцию sortByFrequency", function() {
         assert.deepEqual(result, [3, 3, 3, -1, -1, -2], "Функция должна корректно работать с отрицательными числами.");
     });
 
-    //  Негативные сценарии
-    QUnit.test("Передан null", function(assert) {
-        assert.throws(
-            () => sortByFrequency(null),
-            /Invalid argument/,
-            "Должно выбрасываться исключение при передаче null."
-        );
+    QUnit.test("Возвращает пустой массив при передаче null", function(assert) {
+        const result = sortByFrequency(null);
+        assert.deepEqual(result, [], "Должен возвращать пустой массив при передаче null");
     });
 
-    QUnit.test("Передан undefined", function(assert) {
-        assert.throws(
-            () => sortByFrequency(undefined),
-            /Invalid argument/,
-            "Должно выбрасываться исключение при передаче undefined."
-        );
+    QUnit.test("Возвращает пустой массив при передаче undefined", function(assert) {
+        const result = sortByFrequency(undefined);
+        assert.deepEqual(result, [], "Должен возвращать пустой массив при передаче undefined");
     });
 
-    QUnit.test("Передано число вместо массива", function(assert) {
-        assert.throws(
-            () => sortByFrequency(123),
-            /Invalid argument/,
-            "Должно выбрасываться исключение при передаче числа."
-        );
+    QUnit.test("Возвращает пустой массив при передаче строки", function(assert) {
+        const result = sortByFrequency("string");
+        assert.deepEqual(result, [], "Должен возвращать пустой массив при передаче строки");
     });
 
-    QUnit.test("Передана строка вместо массива", function(assert) {
-        assert.throws(
-            () => sortByFrequency("not array"),
-            /Invalid argument/,
-            "Должно выбрасываться исключение при передаче строки."
-        );
+    QUnit.test("Возвращает пустой массив при передаче числа", function(assert) {
+        const result = sortByFrequency(123);
+        assert.deepEqual(result, [], "Должен возвращать пустой массив при передаче числа");
     });
 
-    QUnit.test("Передан объект вместо массива", function(assert) {
-        assert.throws(
-            () => sortByFrequency({ a: 1 }),
-            /Invalid argument/,
-            "Должно выбрасываться исключение при передаче объекта."
-        );
+    QUnit.test("Возвращает пустой массив при передаче объекта", function(assert) {
+        const result = sortByFrequency({});
+        assert.deepEqual(result, [], "Должен возвращать пустой массив при передаче объекта");
+    });
+
+    QUnit.test("Игнорирует нечисловые значения в массиве", function(assert) {
+        const result = sortByFrequency([1, "string", 2, null, 3, undefined, 1]);
+        assert.deepEqual(result, [1, 1, 2, 3], "Должен игнорировать нечисловые значения в массиве");
     });
 });

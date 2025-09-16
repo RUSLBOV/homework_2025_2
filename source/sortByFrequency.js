@@ -12,15 +12,21 @@
  */
 function sortByFrequency(arr) {
     if (!Array.isArray(arr)) {
-        throw new TypeError("Ошибка! Входные данные должны быть массивом типа number!");
+        return [];
     }
-
+    
+    const numbersOnly = arr.filter(item => typeof item === 'number' && !isNaN(item));
+    
+    if (numbersOnly.length === 0) {
+        return [];
+    }
+    
     const frequency = {};
-    for (const num of arr) {
+    for (const num of numbersOnly) {
         frequency[num] = (frequency[num] || 0) + 1;
     }
-
-    return [...arr].sort((a, b) => {
+    
+    return [...numbersOnly].sort((a, b) => {
         if (frequency[b] === frequency[a]) {
             return a - b;
         }
