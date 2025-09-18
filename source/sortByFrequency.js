@@ -11,7 +11,7 @@
  * sortByFrequency([1, 2, 3, 2, 1, 2]) // [2, 2, 2, 1, 1, 3]
  * @author Ягубов Р.М WEB-22.
  */
-function sortByFrequency(arr) {
+const sortByFrequency =(arr)=> {
     if (!Array.isArray(arr)) {
         return [];
     }
