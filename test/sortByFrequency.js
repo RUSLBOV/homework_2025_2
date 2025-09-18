@@ -59,3 +59,4 @@ QUnit.module("Тестируем функцию sortByFrequency", function() {
         assert.deepEqual(result, [1, 1, 2, 3], "Должен игнорировать нечисловые значения в массиве");
     });
 });
+
